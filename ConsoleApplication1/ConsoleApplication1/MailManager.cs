@@ -11,11 +11,14 @@ using ConsoleApplication1.Parser;
 using ConsoleApplication1.OrderDetails;
 
 
+
 namespace ConsoleApplication1
 {
     public class MailManager
     {
-        private const string LOG_FILE_PATH_T = "c:\\stam.txt";
+        private const string LOG_FILE_PATH_Q = "c:\\stam.txt";
+        private string a;
+        private string d;
 
         private string b = null;
         private string e = String.Empty;
