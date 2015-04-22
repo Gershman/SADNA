@@ -1,0 +1,15 @@
+c:\users\tal\documents\visual studio 2010\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+c:\users\tal\documents\visual studio 2010\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+c:\users\tal\documents\visual studio 2010\Projects\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
+c:\users\tal\documents\visual studio 2010\Projects\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
+c:\users\tal\documents\visual studio 2010\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\S22.Imap.dll
+C:\Users\Tal\Documents\Visual Studio 2010\Projects\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+C:\Users\Tal\Documents\Visual Studio 2010\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\mysql.data.dll
+C:\Users\Tal\Desktop\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+C:\Users\Tal\Desktop\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\Tal\Desktop\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Tal\Desktop\ConsoleApplication1\ConsoleApplication1\bin\Debug\mysql.data.dll
+C:\Users\Tal\Desktop\ConsoleApplication1\ConsoleApplication1\bin\Debug\OpenPop.dll
+C:\Users\Tal\Desktop\ConsoleApplication1\ConsoleApplication1\bin\Debug\S22.Imap.dll
+C:\Users\Tal\Desktop\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
+C:\Users\Tal\Desktop\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb

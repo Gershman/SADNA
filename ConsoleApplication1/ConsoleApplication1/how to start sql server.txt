@@ -1,0 +1,20 @@
+
+commands to start mysql server on ec2:
+cd /etc
+cd init.d
+sudo service mysqld start
+mysql --user=root --password=iopjkl88
+
+connect via potty:
+
+load moshe;
+and change the dns to the one on the ec2 after start.
+
+also in security groups:
+to connect to the remove computer.
+change the secuirty to your current ip.
+
+
+id : i-d7e49030
+dns : ec2-52-16-162-130.eu-west-1.compute.amazonaws.com
+the above dns will change every start
