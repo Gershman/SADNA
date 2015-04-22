@@ -14,7 +14,7 @@ namespace ConsoleApplication1
 {
     public class MailManager
     {
-        private const string LOG_FILE_PATH_E = "c:\\stam.txt";
+        private const string LOG_FILE_PATH_T = "c:\\stam.txt";
 
 
         private readonly MySqlUtils sqlUtils;
