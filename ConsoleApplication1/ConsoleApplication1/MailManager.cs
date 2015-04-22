@@ -10,18 +10,11 @@ using System.Collections;
 using ConsoleApplication1.Parser;
 using ConsoleApplication1.OrderDetails;
 
-
-
 namespace ConsoleApplication1
 {
     public class MailManager
     {
-        private const string LOG_FILE_PATH_Q = "c:\\stam.txt";
-        private string a;
-        private string d;
-
-        private string b = null;
-        private string e = String.Empty;
+        private const string LOG_FILE_PATH = "c:\\stam.txt";
         private readonly MySqlUtils sqlUtils;
         private OrderData orderData;
         private Parser.Parser parser;
