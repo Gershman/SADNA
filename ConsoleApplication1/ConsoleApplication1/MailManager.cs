@@ -16,6 +16,7 @@ namespace ConsoleApplication1
     {
         private const string LOG_FILE_PATH_E = "c:\\stam.txt";
 
+
         private readonly MySqlUtils sqlUtils;
         private OrderData orderData;
         private Parser.Parser parser;
