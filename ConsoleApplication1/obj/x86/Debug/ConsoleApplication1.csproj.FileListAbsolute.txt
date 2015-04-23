@@ -13,3 +13,11 @@ C:\Users\Tal\Desktop\ConsoleApplication1\ConsoleApplication1\bin\Debug\OpenPop.d
 C:\Users\Tal\Desktop\ConsoleApplication1\ConsoleApplication1\bin\Debug\S22.Imap.dll
 C:\Users\Tal\Desktop\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
 C:\Users\Tal\Desktop\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
+D:\SADNA\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
+D:\SADNA\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
+D:\SADNA\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+D:\SADNA\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+D:\SADNA\ConsoleApplication1\bin\Debug\mysql.data.dll
+D:\SADNA\ConsoleApplication1\bin\Debug\OpenPop.dll
+D:\SADNA\ConsoleApplication1\bin\Debug\S22.Imap.dll
+D:\SADNA\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache

@@ -10,7 +10,7 @@ namespace ConsoleApplication1
     class MySqlUtils
     {
 
-        private const string HOST_NAME = "52.17.94.235";
+        private const string HOST_NAME = "52.17.140.251";
         private const string PASSWORD = "";
         private const string DATA_BASE = "mailCenter";
         private const string ORDERS_TABLE = "Orders";

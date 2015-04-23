@@ -18,3 +18,19 @@ ERR 23/04/2015 19:24:48 in function:   at System.Number.ParseDouble(String value
    at ConsoleApplication1.MailManager.stam() in c:\Users\Tal\Documents\GitHub\Sadna\ConsoleApplication1\MailManager.cs:line 45
    at ConsoleApplication1.MailManager..ctor() in c:\Users\Tal\Documents\GitHub\Sadna\ConsoleApplication1\MailManager.cs:line 32
 ERR 23/04/2015 19:24:49 Error Message: Input string was not in a correct format.
+ERR 23/04/2015 21:11:00 in function:   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Double.Parse(String s)
+   at ConsoleApplication1.Parser.Ebay.Versions.EBayParserVer1.ParseEmail(MailMessage mailDetails, UInt32 uid) in d:\SADNA\ConsoleApplication1\Parser\Ebay\Versions\EBayParserVer1.cs:line 76
+   at ConsoleApplication1.MailManager.handleMessage(MailMessage mailDetails, UInt32 uid) in d:\SADNA\ConsoleApplication1\MailManager.cs:line 66
+ERR 23/04/2015 21:11:00 Error Message: Input string was not in a correct format.
+ERR 23/04/2015 21:33:24 in function:   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Double.Parse(String s)
+   at ConsoleApplication1.Parser.Ebay.Versions.EBayParserVer1.ParseEmail(MailMessage mailDetails, UInt32 uid) in d:\SADNA\ConsoleApplication1\Parser\Ebay\Versions\EBayParserVer1.cs:line 120
+   at ConsoleApplication1.MailManager.handleMessage(MailMessage mailDetails, UInt32 uid) in d:\SADNA\ConsoleApplication1\MailManager.cs:line 66
+ERR 23/04/2015 21:33:24 Error Message: Input string was not in a correct format.
+ERR 23/04/2015 22:35:56 in function:   at ConsoleApplication1.Parser.Ebay.Versions.EBayParserVer1.ParseEmail(MailMessage mailDetails, UInt32 uid) in d:\SADNA\ConsoleApplication1\Parser\Ebay\Versions\EBayParserVer1.cs:line 73
+   at ConsoleApplication1.MailManager.handleMessage(MailMessage mailDetails, UInt32 uid) in d:\SADNA\ConsoleApplication1\MailManager.cs:line 64
+ERR 23/04/2015 22:35:56 Error Message: Index was outside the bounds of the array.
+ERR 23/04/2015 22:36:27 in function:   at ConsoleApplication1.Parser.Ebay.Versions.EBayParserVer1.ParseEmail(MailMessage mailDetails, UInt32 uid) in d:\SADNA\ConsoleApplication1\Parser\Ebay\Versions\EBayParserVer1.cs:line 73
+   at ConsoleApplication1.MailManager.handleMessage(MailMessage mailDetails, UInt32 uid) in d:\SADNA\ConsoleApplication1\MailManager.cs:line 64
+ERR 23/04/2015 22:36:27 Error Message: Index was outside the bounds of the array.

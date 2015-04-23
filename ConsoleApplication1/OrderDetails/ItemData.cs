@@ -13,6 +13,7 @@ namespace ConsoleApplication1.OrderDetails
         public int Quantity { get; set; }
         public double TotalPrice { get; set; }
         public string ImageURL { get; set; }
+        public double ShippingCost { get; set; }
         public DateTime ETA { get; set; }
        
     }

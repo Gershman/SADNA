@@ -19,6 +19,7 @@ namespace ConsoleApplication1
         private readonly MySqlUtils sqlUtils;
         private OrderData orderData;
         private Parser.Parser parser;
+        private ImapClient client;
 
         public MailManager()
         {
@@ -32,7 +33,7 @@ namespace ConsoleApplication1
         {
             while(true)
             {
-                using (ImapClient client = Utils.ConnectionUtils.ConnectToMailImap())
+                using (this.client = Utils.ConnectionUtils.ConnectToMailImap())
                 {
 					IEnumerable<uint>uids = client.Search( SearchCondition.Unseen() );
                     
@@ -43,9 +44,6 @@ namespace ConsoleApplication1
                     {
 						MailMessage message = client.GetMessage(uid);
                         handleMessage(message, uid);
-                        client.DeleteMessage(uid);
-                        sqlUtils.insertNewOrder(this.orderData);
-
                         //reset for new email
                         this.orderData = new OrderData();   
 					}
@@ -64,9 +62,12 @@ namespace ConsoleApplication1
                 this.orderData.UserName = userName;
                 parser = ParserFactory.CreatePraser(mailDetails.Body, orderData);
                 parser.ParseEmail(mailDetails, uid);
+                client.DeleteMessage(uid);
+                sqlUtils.insertNewOrder(this.orderData);
             }
             catch (Exception e)
             {
+                // needs to send email to email of not parse
                 Logger.Instance.LogError("in function:" + e.StackTrace);
                 Logger.Instance.LogError("Error Message: " + e.Message);
             }

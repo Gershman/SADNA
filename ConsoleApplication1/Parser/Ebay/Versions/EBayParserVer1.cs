@@ -21,15 +21,18 @@ namespace ConsoleApplication1.Parser.Ebay.Versions
         protected virtual void parseEmailImages(string userName,string emailSubject,DateTime orderDate)
         {
             base.parseEmailImages(userName, emailSubject, orderDate);
-            const string SEARCH_IMAGE_URL = "http://thumbs.ebaystatic.com/pict"; 
+            const string SEARCH_IMAGE_URL = "http://thumbs.ebaystatic.com/pict";
 
-            // BUG:: only parse image for first item 
-            int startIndexImageUrl = m_EmailBodyHtml.IndexOf(SEARCH_IMAGE_URL);
-            string startUrlImage = m_EmailBodyHtml.Substring(startIndexImageUrl);
-            int endUrlIndex = startUrlImage.IndexOf('"');
-            string itemUrl = startUrlImage.Substring(0, endUrlIndex);
+            foreach (ItemData item in m_Data.Items)
+            {
+                int startIndexImageUrl = m_EmailBodyHtml.IndexOf(SEARCH_IMAGE_URL);
+                string startUrlImage = m_EmailBodyHtml.Substring(startIndexImageUrl);
+                int endUrlIndex = startUrlImage.IndexOf('"');
+                string itemUrl = startUrlImage.Substring(0, endUrlIndex);
+                item.ImageURL = itemUrl;
 
-            this.m_Data.Items.First.Value.ImageURL = itemUrl;
+                m_EmailBodyHtml = m_EmailBodyHtml.Substring(startIndexImageUrl + SEARCH_IMAGE_URL.Length);// remove html for next item
+            }
         }
 
         public override void ParseEmail(MailMessage mailDetails,uint uid)
@@ -37,7 +40,7 @@ namespace ConsoleApplication1.Parser.Ebay.Versions
             const string DATE_SEARCH_STR = "You completed checkout on ";
             const string START_BODY_STR = "Thanks for your purchase";
 
-            string body = mailDetails.Body;
+          string body = mailDetails.Body;
             int startBody = body.IndexOf(START_BODY_STR);
             string emailBody = body.Substring(startBody, body.Length - startBody);
 
@@ -57,14 +60,20 @@ namespace ConsoleApplication1.Parser.Ebay.Versions
             int itemTotalLength = ("*Item total*").Length;
             string bodyFilteredItemInformation = emailBody.Substring(indexOfItemTotal + itemTotalLength);
 
+            int indexOfTransaction = emailBody.IndexOf("transaction:");
+            int transactionLength = ("transaction:").Length;
+            string filterByTransaction = emailBody.Substring(indexOfTransaction + transactionLength);
+            string transactionString = filterByTransaction.Split('<')[0].Trim();
+            newItem.ItemIDWebSite = transactionString;
             newItem.Name = bodyFilteredItemInformation.Split('<')[0].Trim();
-           
+
             //get item quantity, price, shipping price
             int indexOfPaidOn = bodyFilteredItemInformation.IndexOf("Paid on");
             int paidOnLength = ("Paid on").Length;
             int dateLength = (" Oct-09-14").Length;
             bodyFilteredItemInformation = bodyFilteredItemInformation.Substring(indexOfPaidOn + paidOnLength + dateLength);
-            string itemDetailsSection = bodyFilteredItemInformation.Split('<')[0].Trim();
+            string[] bodyFilteredItemInformationSplitted = bodyFilteredItemInformation.Split('<');
+            string itemDetailsSection = bodyFilteredItemInformationSplitted[0].Trim();
             string[] itemDetailsSectionArray = Regex.Split(itemDetailsSection, @"(\d+\.\d+|Free|\d+)");
 
             string productPrice = itemDetailsSectionArray[1];
@@ -73,12 +82,19 @@ namespace ConsoleApplication1.Parser.Ebay.Versions
             string productQuantity = itemDetailsSectionArray[5];
             newItem.Quantity = int.Parse(productQuantity);
             string shippingPrice = itemDetailsSectionArray[3];
-            m_Data.ShippingCost = double.Parse(shippingPrice);
+            if (shippingPrice.Equals("Free"))
+            {
+                newItem.ShippingCost = double.Parse("0");
+            }
+            else
+            {
+                newItem.ShippingCost = double.Parse(shippingPrice);
+            }
 
             m_Data.Currency = itemDetailsSectionArray[0];
             // add the first item to the total price + shipping cost
 
-            newItem.TotalPrice = newItem.Quantity * newItem.ItemPrice;
+            newItem.TotalPrice = newItem.Quantity * newItem.ItemPrice + newItem.ShippingCost;
             
 
             int indexOfForMoreInformation = emailBody.IndexOf("for more information.");
@@ -102,14 +118,30 @@ namespace ConsoleApplication1.Parser.Ebay.Versions
                 else //there is another item
                 {
                     ItemData anotherItem = new ItemData();
-                    newItem.Name= bodyFilteredItemInformation.Split('<')[0].Trim();
-                    //productsNames.Add(newItem);
+                    anotherItem.Name = bodyFilteredItemInformation.Split('<')[0].Trim();
+                    indexOfTransaction = bodyFilteredItemInformation.IndexOf("transaction:");
+                    filterByTransaction = bodyFilteredItemInformation.Substring(indexOfTransaction + transactionLength);
+                    transactionString = filterByTransaction.Split('<')[0].Trim();
+                    anotherItem.ItemIDWebSite = transactionString;
+
                     indexOfPaidOn = bodyFilteredItemInformation.IndexOf("Paid on");
                     paidOnLength = ("Paid on").Length;
                     dateLength = (" Oct-09-14").Length;
                     bodyFilteredItemInformation = bodyFilteredItemInformation.Substring(indexOfPaidOn + paidOnLength + dateLength);
                     itemDetailsSection = bodyFilteredItemInformation.Split('<')[0].Trim();
-                    itemDetailsSectionArray = Regex.Split(itemDetailsSection, @"(\d+\.\d+|Free|\d+)");
+                    itemDetailsSectionArray = Regex.Split(itemDetailsSection, @"(\d+\.\d+|Free|--|\d+)");
+                    anotherItem.ItemPrice = double.Parse(itemDetailsSectionArray[1]);
+                    string shippingCost = itemDetailsSectionArray[3];
+                    if (shippingCost.Equals("Free") || shippingCost.Equals("--"))
+                    {
+                        anotherItem.ShippingCost = double.Parse("0");
+                    }
+                    else
+                    {
+                        anotherItem.ShippingCost = double.Parse(shippingCost);
+                    }
+                    anotherItem.Quantity = int.Parse(itemDetailsSectionArray[5]);
+                    m_Data.Items.AddLast(anotherItem);
 
                 }
                 indexOfForMoreInformation = bodyFilteredItemInformation.IndexOf("for more information.");
