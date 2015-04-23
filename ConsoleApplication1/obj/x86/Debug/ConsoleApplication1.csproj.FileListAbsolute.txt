@@ -13,7 +13,3 @@ C:\Users\Tal\Desktop\ConsoleApplication1\ConsoleApplication1\bin\Debug\OpenPop.d
 C:\Users\Tal\Desktop\ConsoleApplication1\ConsoleApplication1\bin\Debug\S22.Imap.dll
 C:\Users\Tal\Desktop\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
 C:\Users\Tal\Desktop\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
-C:\Users\Nir\GitFolder\SADNA\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
-C:\Users\Nir\GitFolder\SADNA\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
-C:\Users\Tal\Documents\SADNA\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
-C:\Users\Tal\Documents\SADNA\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb

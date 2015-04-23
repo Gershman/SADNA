@@ -4,23 +4,26 @@ using System.Linq;
 using System.Text;
 using S22.Imap;
 using System.Net.Mail;
-using System.Threading;
-using System.Runtime.CompilerServices;
 using System.Collections;
 using ConsoleApplication1.Parser;
 using ConsoleApplication1.OrderDetails;
+using ConsoleApplication1.Logging;
+using System.IO;
 
 namespace ConsoleApplication1
 {
     public class MailManager
     {
-        private const string LOG_FILE_PATH = "c:\\stam.txt";
+        private string log_file_path;
+
         private readonly MySqlUtils sqlUtils;
         private OrderData orderData;
         private Parser.Parser parser;
 
         public MailManager()
         {
+            log_file_path = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\Logging\\History\\project";
+            Logger.Instance.RegisterListener(new LoggerHandlerFile(log_file_path));
             orderData = new OrderData();
             sqlUtils = new MySqlUtils(); 
         }
@@ -31,26 +34,21 @@ namespace ConsoleApplication1
             {
                 using (ImapClient client = Utils.ConnectionUtils.ConnectToMailImap())
                 {
-					// Get a list of unique identifiers (UIDs) of all unread messages in the mailbox.
 					IEnumerable<uint>uids = client.Search( SearchCondition.Unseen() );
                     
                     //<------------------------ only for alpha inset one user!!!!
                     //sqlUtils.insertNewUser(orderData);
 
-					// Fetch the messages and print out their subject lines.
-					foreach(uint uid in uids) {
-
+					foreach(uint uid in uids)
+                    {
 						MailMessage message = client.GetMessage(uid);
                         handleMessage(message, uid);
                         client.DeleteMessage(uid);
                         sqlUtils.insertNewOrder(this.orderData);
 
                         //reset for new email
-                        this.orderData = new OrderData();
-                        
+                        this.orderData = new OrderData();   
 					}
-					// Free up any resources associated with this instance.
-
 					client.Dispose();
                 }
             }
@@ -69,7 +67,8 @@ namespace ConsoleApplication1
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Logger.Instance.LogError("in function:" + e.StackTrace);
+                Logger.Instance.LogError("Error Message: " + e.Message);
             }
         }
     }

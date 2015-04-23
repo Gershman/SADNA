@@ -1,0 +1,20 @@
+ERR 23/04/2015 19:05:42 hello
+ERR 23/04/2015 19:18:53 in function:   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Double.Parse(String s)
+   at ConsoleApplication1.MailManager.stam() in c:\Users\Tal\Documents\GitHub\Sadna\ConsoleApplication1\MailManager.cs:line 44
+   at ConsoleApplication1.MailManager..ctor() in c:\Users\Tal\Documents\GitHub\Sadna\ConsoleApplication1\MailManager.cs:line 32,Input string was not in a correct format.
+ERR 23/04/2015 19:21:38 in function:   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Double.Parse(String s)
+   at ConsoleApplication1.MailManager.stam() in c:\Users\Tal\Documents\GitHub\Sadna\ConsoleApplication1\MailManager.cs:line 44
+   at ConsoleApplication1.MailManager..ctor() in c:\Users\Tal\Documents\GitHub\Sadna\ConsoleApplication1\MailManager.cs:line 32
+Error Message:Input string was not in a correct format.
+ERR 23/04/2015 19:23:38 in function:   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Double.Parse(String s)
+   at ConsoleApplication1.MailManager.stam() in c:\Users\Tal\Documents\GitHub\Sadna\ConsoleApplication1\MailManager.cs:line 44
+   at ConsoleApplication1.MailManager..ctor() in c:\Users\Tal\Documents\GitHub\Sadna\ConsoleApplication1\MailManager.cs:line 32
+Error Message:Input string was not in a correct format.
+ERR 23/04/2015 19:24:48 in function:   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Double.Parse(String s)
+   at ConsoleApplication1.MailManager.stam() in c:\Users\Tal\Documents\GitHub\Sadna\ConsoleApplication1\MailManager.cs:line 45
+   at ConsoleApplication1.MailManager..ctor() in c:\Users\Tal\Documents\GitHub\Sadna\ConsoleApplication1\MailManager.cs:line 32
+ERR 23/04/2015 19:24:49 Error Message: Input string was not in a correct format.

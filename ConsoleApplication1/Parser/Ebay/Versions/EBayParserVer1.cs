@@ -125,7 +125,6 @@ namespace ConsoleApplication1.Parser.Ebay.Versions
         {
             const string TWO_DIGITS_OF_START_YEAR = "20";
 
-            int i;
             string[] splitDate = orderDate.Split('-');
 
             string monthStr = splitDate[0];
