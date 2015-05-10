@@ -64,7 +64,7 @@ namespace ConsoleApplication1
 
             MySqlCommand comm = m_Conn.CreateCommand();
             comm.CommandText = "INSERT INTO " + ORDERS_TABLE + "(orderID,userName,orderDate,shoppingWebSite,shoppingWebSiteID,dateOrderRecivedToParse,address,totalPrice,currency)" +
-            "VALUES(@orderID,@userName,@orderDate,@shoppingWebSite,@shoppingWebSiteID, @dateOrderRecivedToParse,@address,@totalPrice,@currency)";
+            "VALUES(@orderID,@userName,@orderDate,@shoppingWebSite, @dateOrderRecivedToParse,@address,@totalPrice,@currency)";
             comm.Parameters.AddWithValue("@orderID", data.OrderID);
             comm.Parameters.AddWithValue("@userName", data.UserName);
             comm.Parameters.AddWithValue("@orderDate", data.OrderDate);

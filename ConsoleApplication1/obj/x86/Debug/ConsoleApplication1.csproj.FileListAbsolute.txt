@@ -21,3 +21,5 @@ D:\SADNA\ConsoleApplication1\bin\Debug\mysql.data.dll
 D:\SADNA\ConsoleApplication1\bin\Debug\OpenPop.dll
 D:\SADNA\ConsoleApplication1\bin\Debug\S22.Imap.dll
 D:\SADNA\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+C:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
+C:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb

@@ -12,7 +12,6 @@ namespace ConsoleApplication1.OrderDetails
         public string OrderID { get; set; }
         public DateTime DateOrderReceivedToParse { get; set; }
         public DateTime OrderDate { get; set; }
-
         public string Address { get; set; }
         public double ShippingCost { get; set; } 
         public double TotalPrice { get; set; }
