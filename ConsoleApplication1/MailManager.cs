@@ -47,7 +47,7 @@ namespace ConsoleApplication1
                         //reset for new email
                         this.orderData = new OrderData();   
 					}
-					client.Dispose();
+                    //client.Dispose();
                 }
             }
 

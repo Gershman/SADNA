@@ -18,3 +18,6 @@ change the secuirty to your current ip.
 id : i-d7e49030
 dns : ec2-52-16-162-130.eu-west-1.compute.amazonaws.com
 the above dns will change every start
+
+
+ShippingCost

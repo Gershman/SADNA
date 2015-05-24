@@ -1,0 +1,10 @@
+ERR 24/05/2015 13:10:45 in function:   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.ReadResult(UInt64& affectedRows, Int64& lastInsertId)
+   at MySql.Data.MySqlClient.MySqlDataReader.GetResultSet()
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()
+   at ConsoleApplication1.MySqlUtils.insertNewOrder(OrderData data) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Utils\MySqlUtils.cs:line 76
+   at ConsoleApplication1.MailManager.handleMessage(MailMessage mailDetails, UInt32 uid) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\MailManager.cs:line 66
+ERR 24/05/2015 13:10:45 Error Message: Column count doesn't match value count at row 1

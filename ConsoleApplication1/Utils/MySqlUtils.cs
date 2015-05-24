@@ -10,7 +10,7 @@ namespace ConsoleApplication1
     class MySqlUtils
     {
 
-        private const string HOST_NAME = "52.17.140.251";
+        private const string HOST_NAME = "52.28.70.218";
         private const string PASSWORD = "";
         private const string DATA_BASE = "mailCenter";
         private const string ORDERS_TABLE = "Orders";
@@ -20,7 +20,7 @@ namespace ConsoleApplication1
 
         private void connect()
         {
-            string cs = @"server=" + HOST_NAME + ";userid=root;database=" + DATA_BASE + ";";
+            string cs = @"server=" + HOST_NAME + ";userid=root;password=yourpasswordhere;database=" + DATA_BASE + ";";
             try
             {
                 m_Conn = new MySqlConnection(cs);
@@ -45,14 +45,14 @@ namespace ConsoleApplication1
             connect();
 
             MySqlCommand comm = m_Conn.CreateCommand();
-            comm.CommandText = "INSERT INTO " + USER_DETAILS_TABLE + "(userName,password,firstName,lastName,country,age)" +
-            "VALUES(@userName,@pass, @firstName,@lastName, @country,@age)";
+            comm.CommandText = "INSERT INTO " + USER_DETAILS_TABLE + "(userName,password,firstName,lastName,country,birthday)" +
+            "VALUES(@userName,@pass, @firstName,@lastName, @country,@birthday)";
             comm.Parameters.AddWithValue("@userName", "mail.center.test@gmail.com");
             comm.Parameters.AddWithValue("@pass", "1");
             comm.Parameters.AddWithValue("@firstName", DateTime.Now);
             comm.Parameters.AddWithValue("@lastName", "");
             comm.Parameters.AddWithValue("@country", 1);
-            comm.Parameters.AddWithValue("@age", 2);
+            comm.Parameters.AddWithValue("@birthday", DateTime.Now);
             comm.ExecuteNonQuery();
 
             closeConnection();
@@ -63,7 +63,7 @@ namespace ConsoleApplication1
             connect();
 
             MySqlCommand comm = m_Conn.CreateCommand();
-            comm.CommandText = "INSERT INTO " + ORDERS_TABLE + "(orderID,userName,orderDate,shoppingWebSite,shoppingWebSiteID,dateOrderRecivedToParse,address,totalPrice,currency)" +
+            comm.CommandText = "INSERT INTO " + ORDERS_TABLE + "(orderID,userName,orderDate,shoppingWebSite,dateOrderRecivedToParse,address,totalPrice,currency)" +
             "VALUES(@orderID,@userName,@orderDate,@shoppingWebSite, @dateOrderRecivedToParse,@address,@totalPrice,@currency)";
             comm.Parameters.AddWithValue("@orderID", data.OrderID);
             comm.Parameters.AddWithValue("@userName", data.UserName);
@@ -83,20 +83,21 @@ namespace ConsoleApplication1
 
         private void insertNewOrderItems(OrderData data)
         {
-            MySqlCommand comm = m_Conn.CreateCommand();
             foreach(ItemData item in data.Items)
             {
-                comm.CommandText = "INSERT INTO " + LINE_ORDER_TABLE + "(orderID,itemIDWebSite,userName,name,ETA,quantity,itemPrice,totalPrice,imageURL)" +
-                "VALUES(@orderID,@ItemIDWebSite,@userName,@name,@quantity,@itemPrice, @totalPrice,@imageURL)";
+                MySqlCommand comm = m_Conn.CreateCommand();
+                comm.CommandText = "INSERT INTO " + LINE_ORDER_TABLE + "(orderID,itemIDWebSite,userName,name,ETA,quantity,itemPrice,totalPrice,imageURL,shippingCost)" +
+                "VALUES(@orderID,@itemIDWebSite,@userName,@name,@ETA,@quantity,@itemPrice,@totalPrice,@imageURL,@shippingCost)";
                 comm.Parameters.AddWithValue("@orderID", data.OrderID);
                 comm.Parameters.AddWithValue("@itemIDWebSite", item.ItemIDWebSite);
                 comm.Parameters.AddWithValue("@userName", data.UserName);
-                comm.Parameters.AddWithValue("@name", item.Name);
                 comm.Parameters.AddWithValue("@ETA", item.ETA);
+                comm.Parameters.AddWithValue("@name", item.Name);
                 comm.Parameters.AddWithValue("@quantity", item.Quantity);
                 comm.Parameters.AddWithValue("@itemPrice", item.ItemPrice);
                 comm.Parameters.AddWithValue("@totalPrice", item.TotalPrice);
-                comm.Parameters.AddWithValue("@imageURL", "");
+                comm.Parameters.AddWithValue("@imageURL", item.ImageURL);
+                comm.Parameters.AddWithValue("@shippingCost", item.ShippingCost);
                 comm.ExecuteNonQuery();
             }
             
