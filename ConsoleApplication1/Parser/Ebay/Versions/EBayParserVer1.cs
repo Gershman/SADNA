@@ -100,6 +100,9 @@ namespace ConsoleApplication1.Parser.Ebay.Versions
             int indexOfForMoreInformation = emailBody.IndexOf("for more information.");
             int forMoreInformationLength = ("for more information.").Length;
             bodyFilteredItemInformation = emailBody.Substring(indexOfForMoreInformation + forMoreInformationLength);
+            int itemCounter = 0;
+            newItem.ID = ++itemCounter;
+
 
             m_Data.Items.AddLast(newItem);
 
@@ -141,6 +144,7 @@ namespace ConsoleApplication1.Parser.Ebay.Versions
                         anotherItem.ShippingCost = double.Parse(shippingCost);
                     }
                     anotherItem.Quantity = int.Parse(itemDetailsSectionArray[5]);
+                    anotherItem.ID = ++itemCounter;
                     m_Data.Items.AddLast(anotherItem);
 
                 }

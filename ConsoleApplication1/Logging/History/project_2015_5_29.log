@@ -1,0 +1,45 @@
+MSG 29/05/2015 21:13:00 Send an email to: nirmochiach@gmail.com
+ERR 29/05/2015 21:13:00 in function:   at ConsoleApplication1.Parser.Parser.CheckIfISForwardMail(MailMessage mail) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Parser\Parser.cs:line 63
+   at ConsoleApplication1.MailManager.handleMessage(MailMessage mailDetails, UInt32 uid) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\MailManager.cs:line 63
+ERR 29/05/2015 21:13:00 Error Message: The email is not a forward email
+MSG 29/05/2015 21:43:38 Send an email to: mail.center.test@gmail.com
+ERR 29/05/2015 21:43:38 in function:   at System.String.InternalSubStringWithChecks(Int32 startIndex, Int32 length, Boolean fAlwaysCopy)
+   at System.String.Substring(Int32 startIndex)
+   at ConsoleApplication1.ParserUtils.StartEmailBody(String emailBody, String webSite) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Utils\ParserUtils.cs:line 48
+   at ConsoleApplication1.ParserUtils.GetOrderDate(String emailBody, String webSite) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Utils\ParserUtils.cs:line 14
+   at ConsoleApplication1.Utils.ConnectionUtils.checkIfCurrentHandleEmail(Pop3Client client, String userName, String emailSubject, DateTime orderDate, Int32 index) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Utils\ConnectionUtils.cs:line 58
+   at ConsoleApplication1.Utils.ConnectionUtils.FindIDFromImapToPop3(Pop3Client client, String userName, String emailSubject, DateTime orderDate) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Utils\ConnectionUtils.cs:line 40
+   at ConsoleApplication1.Parser.Parser.parseEmailImages(String userName, String emailSubject, DateTime orderDate) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Parser\Parser.cs:line 77
+   at ConsoleApplication1.Parser.Ebay.Versions.EBayParserVer2.parseEmailImages(String userName, String emailSubject, DateTime orderDate) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Parser\Ebay\Versions\EBayParserVer2.cs:line 24
+   at ConsoleApplication1.Parser.Ebay.Versions.EBayParserVer2.ParseEmail(MailMessage mailDetails, UInt32 uid) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Parser\Ebay\Versions\EBayParserVer2.cs:line 62
+   at ConsoleApplication1.MailManager.handleMessage(MailMessage mailDetails, UInt32 uid) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\MailManager.cs:line 68
+ERR 29/05/2015 21:43:38 Error Message: StartIndex cannot be less than zero.
+Parameter name: startIndex
+MSG 29/05/2015 21:45:03 Send an email to: mail.center.test@gmail.com
+MSG 29/05/2015 22:03:33 Send an email to: nirmochiach@gmail.com
+ERR 29/05/2015 22:03:33 in function:   at ConsoleApplication1.Parser.Parser.CheckIfISForwardMail(MailMessage mail) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Parser\Parser.cs:line 64
+   at ConsoleApplication1.MailManager.handleMessage(MailMessage mailDetails, UInt32 uid) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\MailManager.cs:line 64
+ERR 29/05/2015 22:03:33 Error Message: The email is not a forward email
+MSG 29/05/2015 22:05:33 Send an email to: nirmochiach@gmail.com
+ERR 29/05/2015 22:05:33 in function:   at ConsoleApplication1.MySqlUtils.CheckIfUserValid(String userName) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Utils\MySqlUtils.cs:line 122
+   at ConsoleApplication1.MailManager.handleMessage(MailMessage mailDetails, UInt32 uid) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\MailManager.cs:line 64
+ERR 29/05/2015 22:05:33 Error Message: UserName was not found in dataBase
+MSG 29/05/2015 22:06:53 Send an email to: mail.center.test@gmail.com
+ERR 29/05/2015 22:06:53 in function:   at ConsoleApplication1.Parser.Parser.CheckIfISForwardMail(MailMessage mail) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Parser\Parser.cs:line 64
+   at ConsoleApplication1.MailManager.handleMessage(MailMessage mailDetails, UInt32 uid) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\MailManager.cs:line 65
+ERR 29/05/2015 22:06:53 Error Message: The email is not a forward email
+MSG 29/05/2015 22:07:37 Send an email to: mail.center.test@gmail.com
+ERR 29/05/2015 22:07:37 in function:   at ConsoleApplication1.Parser.Parser.CheckIfISForwardMail(MailMessage mail) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Parser\Parser.cs:line 64
+   at ConsoleApplication1.MailManager.handleMessage(MailMessage mailDetails, UInt32 uid) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\MailManager.cs:line 65
+ERR 29/05/2015 22:07:37 Error Message: The email is not a forward email
+MSG 29/05/2015 22:08:27 Send an email to: mail.center.test@gmail.com
+ERR 29/05/2015 22:08:27 in function:   at ConsoleApplication1.Parser.ParserFactory.CreatePraser(String emailBody, OrderData orderData) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Parser\ParserFactory.cs:line 37
+   at ConsoleApplication1.MailManager.handleMessage(MailMessage mailDetails, UInt32 uid) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\MailManager.cs:line 67
+ERR 29/05/2015 22:08:27 Error Message: This shopping web site doesn't is not supported with an automatic parser yet
+MSG 29/05/2015 22:10:17 Send an email to: mail.center.test@gmail.com
+ERR 29/05/2015 22:10:17 in function:   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Double.Parse(String s)
+   at ConsoleApplication1.Parser.Ebay.Versions.EBayParserVer2.getTotalPrice(String emailBody) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Parser\Ebay\Versions\EBayParserVer2.cs:line 250
+   at ConsoleApplication1.Parser.Ebay.Versions.EBayParserVer2.ParseEmail(MailMessage mailDetails, UInt32 uid) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Parser\Ebay\Versions\EBayParserVer2.cs:line 59
+   at ConsoleApplication1.MailManager.handleMessage(MailMessage mailDetails, UInt32 uid) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\MailManager.cs:line 68
+ERR 29/05/2015 22:10:17 Error Message: Input string was not in a correct format.

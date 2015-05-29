@@ -9,6 +9,8 @@ using ConsoleApplication1.Parser;
 using ConsoleApplication1.OrderDetails;
 using ConsoleApplication1.Logging;
 using System.IO;
+using ConsoleApplication1.Exceptions;
+using ConsoleApplication1.ResponseMails;
 
 namespace ConsoleApplication1
 {
@@ -20,6 +22,7 @@ namespace ConsoleApplication1
         private OrderData orderData;
         private Parser.Parser parser;
         private ImapClient client;
+        private MailMessage currentEmail;
 
         public MailManager()
         {
@@ -42,8 +45,8 @@ namespace ConsoleApplication1
 
 					foreach(uint uid in uids)
                     {
-						MailMessage message = client.GetMessage(uid);
-                        handleMessage(message, uid);
+                        currentEmail = client.GetMessage(uid);
+                        handleMessage(currentEmail, uid);
                         //reset for new email
                         this.orderData = new OrderData();   
 					}
@@ -57,19 +60,72 @@ namespace ConsoleApplication1
             string userName = Parser.Parser.GetUserName(mailDetails);
             try
             {
-                Parser.Parser.CheckIfISForwardMail(mailDetails);
                 sqlUtils.CheckIfUserValid(userName);
+                Parser.Parser.CheckIfISForwardMail(mailDetails);
                 this.orderData.UserName = userName;
                 parser = ParserFactory.CreatePraser(mailDetails.Body, orderData);
                 parser.ParseEmail(mailDetails, uid);
-                client.DeleteMessage(uid);
                 sqlUtils.insertNewOrder(this.orderData);
+                sendEmailToClient(null, true, mailDetails.Subject);
+                client.DeleteMessage(uid);
             }
             catch (Exception e)
             {
-                // needs to send email to email of not parse
+                sendEmailToClient(e, false, mailDetails.Subject);
                 Logger.Instance.LogError("in function:" + e.StackTrace);
                 Logger.Instance.LogError("Error Message: " + e.Message);
+            }
+        }
+
+        private void sendEmailToClient(Exception e, bool orderAdded, string currentEmailsubject)
+        {
+            const string USER_NAME = "moo.order.center@gmail.com";
+            const string PASSWORD = "niriyartal";
+            const int PORT = 587;
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                mail.From = new MailAddress(USER_NAME);
+                mail.To.Add(this.currentEmail.From.Address);
+
+                mail.IsBodyHtml = true;
+                ResponseMail response = null;
+                if(orderAdded)
+                {
+                    response = FactoryResponseMail.CreateResponseMail(FactoryResponseMail.ChoiceResponseEnum.OrderAdded, currentEmailsubject);
+                }
+                else if (e is InvalidUserLoginException)
+                {
+                    response = FactoryResponseMail.CreateResponseMail(FactoryResponseMail.ChoiceResponseEnum.UserNotFound, currentEmailsubject);
+                }
+                else if (e is InvalidForwardMailException)
+                {
+                    response = FactoryResponseMail.CreateResponseMail(FactoryResponseMail.ChoiceResponseEnum.NotForwardMail, currentEmailsubject);
+                }
+                else if(e is UnSupportedWebSiteException)
+                {
+                    response = FactoryResponseMail.CreateResponseMail(FactoryResponseMail.ChoiceResponseEnum.UnSupportedWebSite, currentEmailsubject);
+                }
+                else // bad parse
+                {
+                    response = FactoryResponseMail.CreateResponseMail(FactoryResponseMail.ChoiceResponseEnum.BadParse, currentEmailsubject);
+                  
+                }
+                mail.Subject = response.Subject;
+                mail.Body = response.EmailBody;
+
+                SmtpServer.Port = PORT;
+                SmtpServer.Credentials = new System.Net.NetworkCredential(USER_NAME, PASSWORD);
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+                Logger.Instance.LogMessage(DateTime.Now,"Send an email to: " + this.currentEmail.From.Address,null);
+            }
+            catch (Exception ex)
+            {
+                Logger.Instance.LogError("could not send email to ");
             }
         }
     }

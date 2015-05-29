@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using MySql.Data.MySqlClient;
 using ConsoleApplication1.OrderDetails;
+using ConsoleApplication1.Exceptions;
 
 namespace ConsoleApplication1
 {
@@ -86,8 +87,8 @@ namespace ConsoleApplication1
             foreach(ItemData item in data.Items)
             {
                 MySqlCommand comm = m_Conn.CreateCommand();
-                comm.CommandText = "INSERT INTO " + LINE_ORDER_TABLE + "(orderID,itemIDWebSite,userName,name,ETA,quantity,itemPrice,totalPrice,imageURL,shippingCost)" +
-                "VALUES(@orderID,@itemIDWebSite,@userName,@name,@ETA,@quantity,@itemPrice,@totalPrice,@imageURL,@shippingCost)";
+                comm.CommandText = "INSERT INTO " + LINE_ORDER_TABLE + "(orderID,itemIDWebSite,userName,name,ETA,quantity,itemPrice,totalPrice,imageURL,shippingCost,ID)" +
+                "VALUES(@orderID,@itemIDWebSite,@userName,@name,@ETA,@quantity,@itemPrice,@totalPrice,@imageURL,@shippingCost,@ID)";
                 comm.Parameters.AddWithValue("@orderID", data.OrderID);
                 comm.Parameters.AddWithValue("@itemIDWebSite", item.ItemIDWebSite);
                 comm.Parameters.AddWithValue("@userName", data.UserName);
@@ -98,6 +99,7 @@ namespace ConsoleApplication1
                 comm.Parameters.AddWithValue("@totalPrice", item.TotalPrice);
                 comm.Parameters.AddWithValue("@imageURL", item.ImageURL);
                 comm.Parameters.AddWithValue("@shippingCost", item.ShippingCost);
+                comm.Parameters.AddWithValue("@ID", item.ID);
                 comm.ExecuteNonQuery();
             }
             
@@ -117,7 +119,7 @@ namespace ConsoleApplication1
             if (userName.Equals(""))
             {
                 closeConnection();
-                throw new Exception("UserName was not found in dataBase");
+                throw new InvalidUserLoginException();
             }
            
             closeConnection();

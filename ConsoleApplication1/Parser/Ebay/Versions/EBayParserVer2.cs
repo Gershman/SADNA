@@ -98,6 +98,7 @@ namespace ConsoleApplication1.Parser.Ebay.Versions
                 newItem.ItemPrice = 0; //not in email
                 newItem.TotalPrice = 0; //not in email
                 newItem.Quantity = 1;
+                newItem.ID = i;
                 m_Data.Items.AddLast(newItem);
                 body = moveToNextItemStrInBody(body,i);
             }

@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using ConsoleApplication1.OrderDetails;
 using OpenPop.Pop3;
 using OpenPop.Mime;
+using ConsoleApplication1.Exceptions;
 
 namespace ConsoleApplication1.Parser
 {
@@ -48,13 +49,19 @@ namespace ConsoleApplication1.Parser
 
         public static void CheckIfISForwardMail(MailMessage mail)
         {
+            bool forwardEmail = true;
             string[] wordsOfFowardMail = { "From", "To", "Subject", "Date" };
             foreach (string word in wordsOfFowardMail)
             {
                 if (!mail.Body.Contains(word))
                 {
-                    throw new Exception("The email is not a forward email");
+                    forwardEmail = false;
+                    break;
                 }
+            }
+            if (!forwardEmail)
+            {
+                throw new InvalidForwardMailException();
             }
 
         }

@@ -57,6 +57,7 @@ namespace ConsoleApplication1.Parser.Amazon.Versions
             string strStartDigit = itemPriceWithCurrency.Substring(index);
             newItem.ItemPrice = double.Parse(strStartDigit);
             newItem.Quantity = 1;
+            newItem.ID = 1;
             newItem.TotalPrice = newItem.ItemPrice * newItem.Quantity;
             
             //adds the new items to the list of item data

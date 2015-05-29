@@ -15,6 +15,7 @@ namespace ConsoleApplication1.OrderDetails
         public string ImageURL { get; set; }
         public double ShippingCost { get; set; }
         public DateTime ETA { get; set; }
+        public int ID { get; set; }
        
     }
 }

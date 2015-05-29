@@ -3,7 +3,7 @@ commands to start mysql server on ec2:
 cd /etc
 cd init.d
 sudo service mysqld start
-mysql --user=root --password=iopjkl88
+mysql --user=root --password=yourpasswordhere
 
 connect via potty:
 
