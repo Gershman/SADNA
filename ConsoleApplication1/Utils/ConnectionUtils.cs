@@ -14,7 +14,7 @@ namespace ConsoleApplication1.Utils
         private const string HOST_NAME_POP3 = "pop.gmail.com";
         private const int PORT_IMAP = 993;
         private const int PORT_POP3 = 995;
-        private const string USER_NAME = "moo.order.center";
+        private const string USER_NAME = "BoughtIt.orders";
         private const string PASS_WORD = "niriyartal";
 
         public static ImapClient ConnectToMailImap()

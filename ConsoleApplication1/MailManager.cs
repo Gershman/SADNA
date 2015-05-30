@@ -11,6 +11,9 @@ using ConsoleApplication1.Logging;
 using System.IO;
 using ConsoleApplication1.Exceptions;
 using ConsoleApplication1.ResponseMails;
+using OpenPop.Pop3;
+using ConsoleApplication1.Utils;
+using OpenPop.Mime;
 
 namespace ConsoleApplication1
 {
@@ -48,9 +51,8 @@ namespace ConsoleApplication1
                         currentEmail = client.GetMessage(uid);
                         handleMessage(currentEmail, uid);
                         //reset for new email
-                        this.orderData = new OrderData();   
+                        this.orderData = new OrderData(); 
 					}
-                    //client.Dispose();
                 }
             }
 
@@ -72,14 +74,62 @@ namespace ConsoleApplication1
             catch (Exception e)
             {
                 sendEmailToClient(e, false, mailDetails.Subject);
+                if (isParseException(e))
+                {
+                    forwardMailToBadPraseMailBox(mailDetails);
+                }
                 Logger.Instance.LogError("in function:" + e.StackTrace);
                 Logger.Instance.LogError("Error Message: " + e.Message);
+                client.DeleteMessage(uid);
             }
+        }
+
+        private void forwardMailToBadPraseMailBox(MailMessage mailDetails)
+        {
+            const string USER_NAME = "boughtit.helpcenter@gmail.com";
+            const string TO_MAIL = "boughtIt.failed.parse@gmail.com";
+            const string PASSWORD = "niriyartal";
+            const int PORT = 587;
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                mail.From = new MailAddress(USER_NAME);
+                mail.To.Add(TO_MAIL);
+
+                mail.IsBodyHtml = true;
+
+                mail.Subject = mailDetails.Subject;
+                Pop3Client connectPop3 = ConnectionUtils.ConnectToMailPop3();
+                int index = Utils.ConnectionUtils.FindIDFromImapToPop3(connectPop3, this.currentEmail.From.Address, this.currentEmail.Subject, this.orderData.OrderDate);
+                Message message = connectPop3.GetMessage(index);
+                mail.Body = message.ToMailMessage().Body.ToString();
+                connectPop3.Dispose();
+
+                SmtpServer.Port = PORT;
+                SmtpServer.Credentials = new System.Net.NetworkCredential(USER_NAME, PASSWORD);
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+                Logger.Instance.LogMessage(DateTime.Now, "Send bad Parse mail to + "+TO_MAIL, null);
+            }
+            catch (Exception ex)
+            {
+                Logger.Instance.LogError("could not send email to ");
+            }
+        }
+
+        private bool isParseException(Exception e)
+        {
+            bool result ;
+            result =!(e is InvalidForwardMailException || e is InvalidUserLoginException || e is UnSupportedWebSiteException);
+            return result;
         }
 
         private void sendEmailToClient(Exception e, bool orderAdded, string currentEmailsubject)
         {
-            const string USER_NAME = "moo.order.center@gmail.com";
+            const string USER_NAME = "boughtit.helpcenter@gmail.com";
             const string PASSWORD = "niriyartal";
             const int PORT = 587;
             try
@@ -111,7 +161,6 @@ namespace ConsoleApplication1
                 else // bad parse
                 {
                     response = FactoryResponseMail.CreateResponseMail(FactoryResponseMail.ChoiceResponseEnum.BadParse, currentEmailsubject);
-                  
                 }
                 mail.Subject = response.Subject;
                 mail.Body = response.EmailBody;

@@ -1,0 +1,32 @@
+MSG 30/05/2015 12:02:10 Send an email to: tal.gershman@gmail.com
+ERR 30/05/2015 12:02:10 in function:   at ConsoleApplication1.Parser.ParserFactory.CreatePraser(String emailBody, OrderData orderData) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Parser\ParserFactory.cs:line 37
+   at ConsoleApplication1.MailManager.handleMessage(MailMessage mailDetails, UInt32 uid) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\MailManager.cs:line 66
+ERR 30/05/2015 12:02:10 Error Message: This shopping web site doesn't is not supported with an automatic parser yet
+MSG 30/05/2015 18:02:11 Send an email to: mail.center.test@gmail.com
+MSG 30/05/2015 18:02:22 Send bad Parse mail to + boughtIt.failed.parse@gmail.com
+ERR 30/05/2015 18:02:22 in function:   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Double.Parse(String s)
+   at ConsoleApplication1.Parser.Ebay.Versions.EBayParserVer2.getTotalPrice(String emailBody) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Parser\Ebay\Versions\EBayParserVer2.cs:line 250
+   at ConsoleApplication1.Parser.Ebay.Versions.EBayParserVer2.ParseEmail(MailMessage mailDetails, UInt32 uid) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Parser\Ebay\Versions\EBayParserVer2.cs:line 59
+   at ConsoleApplication1.MailManager.handleMessage(MailMessage mailDetails, UInt32 uid) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\MailManager.cs:line 66
+ERR 30/05/2015 18:02:22 Error Message: Input string was not in a correct format.
+MSG 30/05/2015 18:49:22 Send an email to: mail.center.test@gmail.com
+MSG 30/05/2015 18:51:19 Send an email to: mail.center.test@gmail.com
+MSG 30/05/2015 18:52:08 Send an email to: mail.center.test@gmail.com
+MSG 30/05/2015 19:04:32 Send an email to: mail.center.test@gmail.com
+MSG 30/05/2015 19:05:40 Send an email to: mail.center.test@gmail.com
+MSG 30/05/2015 19:05:53 Send bad Parse mail to + boughtIt.failed.parse@gmail.com
+ERR 30/05/2015 19:05:57 in function:   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Double.Parse(String s)
+   at ConsoleApplication1.Parser.Ebay.Versions.EBayParserVer2.getTotalPrice(String emailBody) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Parser\Ebay\Versions\EBayParserVer2.cs:line 250
+   at ConsoleApplication1.Parser.Ebay.Versions.EBayParserVer2.ParseEmail(MailMessage mailDetails, UInt32 uid) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Parser\Ebay\Versions\EBayParserVer2.cs:line 59
+   at ConsoleApplication1.MailManager.handleMessage(MailMessage mailDetails, UInt32 uid) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\MailManager.cs:line 69
+ERR 30/05/2015 19:05:57 Error Message: Input string was not in a correct format.
+MSG 30/05/2015 19:08:26 Send an email to: mail.center.test@gmail.com
+MSG 30/05/2015 19:10:17 Send bad Parse mail to + boughtIt.failed.parse@gmail.com
+ERR 30/05/2015 19:10:20 in function:   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Double.Parse(String s)
+   at ConsoleApplication1.Parser.Ebay.Versions.EBayParserVer2.getTotalPrice(String emailBody) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Parser\Ebay\Versions\EBayParserVer2.cs:line 250
+   at ConsoleApplication1.Parser.Ebay.Versions.EBayParserVer2.ParseEmail(MailMessage mailDetails, UInt32 uid) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\Parser\Ebay\Versions\EBayParserVer2.cs:line 59
+   at ConsoleApplication1.MailManager.handleMessage(MailMessage mailDetails, UInt32 uid) in c:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\MailManager.cs:line 69
+ERR 30/05/2015 19:10:20 Error Message: Input string was not in a correct format.
