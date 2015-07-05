@@ -17,6 +17,7 @@ namespace ConsoleApplication1
         private const string ORDERS_TABLE = "Orders";
         private const string LINE_ORDER_TABLE = "Line_Order";
         private const string USER_DETAILS_TABLE = "UserDetails";
+        private const string DEVICES_PUSH_IDS = "DevicesPushIDS";
         MySqlConnection m_Conn;
 
         private void connect()
@@ -123,6 +124,65 @@ namespace ConsoleApplication1
             }
            
             closeConnection();
+        }
+
+        public bool UserWantsPushNotificationOnInsertOrder(string userName)
+        {
+            bool result = true;
+
+            connect();
+
+            string sqlCommand = "select PushNotificationOnInsert from " + USER_DETAILS_TABLE + " where userName=  '" + userName + "'";
+            MySqlCommand cmd = new MySqlCommand(sqlCommand, m_Conn);
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            adapter.SelectCommand = cmd;
+            result = Convert.ToBoolean(cmd.ExecuteScalar());
+
+            closeConnection();
+
+            return result;
+        }
+
+
+        internal Dictionary<string, Utils.PushNotificationUtils.PlatformEnum> GetDevicesID(string userName)
+        {
+            Dictionary<string, Utils.PushNotificationUtils.PlatformEnum> devicesIDS = new Dictionary<string, Utils.PushNotificationUtils.PlatformEnum>();
+
+            connect();
+
+            using (MySqlCommand cmd = m_Conn.CreateCommand())
+            {
+                cmd.CommandText = @"SELECT ID,platform FROM "+ DEVICES_PUSH_IDS + " WHERE userName = ?Name;";
+                cmd.Parameters.AddWithValue("Name", userName);
+                MySqlDataReader Reader = cmd.ExecuteReader();
+                if (Reader.HasRows) 
+                {
+                    while (Reader.Read())
+                    {
+                        string ID = GetDBString("ID", Reader);
+                        string platform =GetDBString("platform", Reader);
+                        Utils.PushNotificationUtils.PlatformEnum currentPlatform = Utils.PushNotificationUtils.PlatformEnum.android;
+                        if(platform.Equals(Utils.PushNotificationUtils.PlatformEnum.android.ToString()))
+                        {
+                            currentPlatform = Utils.PushNotificationUtils.PlatformEnum.android;
+                        }
+                        else if (platform.Equals(Utils.PushNotificationUtils.PlatformEnum.apple.ToString()))
+                        {
+                            currentPlatform = Utils.PushNotificationUtils.PlatformEnum.apple;
+                        }
+                        devicesIDS.Add(ID,currentPlatform);
+                    }
+                }
+                Reader.Close();
+            }
+
+            closeConnection();
+            return devicesIDS;
+        }
+        private static string GetDBString(string SqlFieldName, MySqlDataReader Reader)
+        {
+            return Reader[SqlFieldName].Equals(DBNull.Value) ? String.Empty : Reader.GetString(SqlFieldName);
         }
     }
 }

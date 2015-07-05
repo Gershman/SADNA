@@ -47,7 +47,7 @@ namespace ConsoleApplication1.ResponseMails
             const string BODY_HEADER = "Unsupported website";
             newResponse.Subject = SUBJECT;
             
-            newResponse.EmailBody = "Sorry! Unfortunately we don't support this website yet. You can enter this order manually in the application.";
+            newResponse.EmailBody = "Sorry! unfortunately we don't support this web site yet. you can enter this order manually in the app.";
             newResponse.EmailBody = emailTemplate(BODY_HEADER, newResponse.EmailBody, currentEmailsubject);
         }
 
@@ -56,7 +56,7 @@ namespace ConsoleApplication1.ResponseMails
             const string SUBJECT = "There was a problem with your email submission";
             const string BODY_HEADER = "Something went wrong";
             newResponse.Subject = SUBJECT;
-            newResponse.EmailBody = "Sorry! Something went wrong with your submission. The email was sent for inspection and we will try to fix this problem as soon as possible."; 
+            newResponse.EmailBody = "Sorry! something went wrong with your submission. the email was send for inspection and we will try to fix this problem as soon as possible."; 
             newResponse.EmailBody = emailTemplate(BODY_HEADER,newResponse.EmailBody, currentEmailsubject);
         }
 
@@ -65,7 +65,7 @@ namespace ConsoleApplication1.ResponseMails
             const string SUBJECT = "There was a problem with your email submission";
             const string BODY_HEADER = "Not a valid order mail";
             newResponse.Subject = SUBJECT;
-            newResponse.EmailBody = "The email that you sent us is not a forwarded order mail.";
+            newResponse.EmailBody = "The email that you send us is not a forwarded order mail.";
             newResponse.EmailBody = emailTemplate(BODY_HEADER, newResponse.EmailBody, currentEmailsubject);
         }
 
@@ -74,7 +74,7 @@ namespace ConsoleApplication1.ResponseMails
             const string SUBJECT = "Sorry, you are not a registered user";
             const string BODY_HEADER = "User not found";
             newResponse.Subject = SUBJECT;
-            newResponse.EmailBody = "In order to use our services, please sign up in the application.";
+            newResponse.EmailBody = "In order to use our services, please sign up in the app.";
             newResponse.EmailBody = emailTemplate(BODY_HEADER, newResponse.EmailBody, currentEmailsubject);
         }
 
@@ -83,7 +83,7 @@ namespace ConsoleApplication1.ResponseMails
             const string SUBJECT  = "Your submission was successfully added.";
             const string BODY_HEADER = "Success!!";
             newResponse.Subject = SUBJECT;
-            newResponse.EmailBody = "Thank you! Your email submission was successfully added to the database.";
+            newResponse.EmailBody = "Thank you ! your email submission was successfully added to your database.";
             newResponse.EmailBody = emailTemplate(BODY_HEADER, newResponse.EmailBody, currentEmailsubject);
         }
         private static string emailTemplate(string emailTitle, string emailBody, string currentEmailsubject)

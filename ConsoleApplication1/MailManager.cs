@@ -69,6 +69,7 @@ namespace ConsoleApplication1
                 parser.ParseEmail(mailDetails, uid);
                 sqlUtils.insertNewOrder(this.orderData);
                 sendEmailToClient(null, true, mailDetails.Subject);
+                PushNotificationUtils.SendPushNotification(this.orderData);
                 client.DeleteMessage(uid);
             }
             catch (Exception e)

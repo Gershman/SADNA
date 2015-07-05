@@ -29,7 +29,3 @@ C:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\bin\Debug\mysql.data.dll
 C:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\bin\Debug\OpenPop.dll
 C:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\bin\Debug\S22.Imap.dll
 C:\Users\Tal\Documents\GitHub\SADNA\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
-C:\Users\Nir\GitFolder\SADNA\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
-C:\Users\Nir\GitFolder\SADNA\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
-C:\Users\Nir\Contacts\Desktop\SADNA\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
-C:\Users\Nir\Contacts\Desktop\SADNA\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
