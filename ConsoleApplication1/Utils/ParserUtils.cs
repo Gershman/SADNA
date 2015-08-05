@@ -45,8 +45,26 @@ namespace ConsoleApplication1
 
         public static string StartEmailBody(string emailBody, string webSite)
         {
-            string startEmailBody = emailBody.Substring(emailBody.IndexOf("@" + webSite + ".com"));
+            int startIndex = getSiteStartIndex(emailBody , webSite);
+            string startEmailBody = emailBody.Substring(startIndex);
             return startEmailBody;
+        }
+
+        private static int getSiteStartIndex(string emailBody, string webSite)
+        {
+            int startIndex = 0;
+
+            if (emailBody.IndexOf("@" + webSite + ".com") != -1)
+            {
+                startIndex = emailBody.IndexOf("@" + webSite + ".com");
+            }
+            else if (emailBody.IndexOf("@" + webSite + ".co.uk") != -1)
+            {
+                startIndex = emailBody.IndexOf("@" + webSite + ".co.uk");
+            }
+
+            return startIndex;
+            
         }
 
         public static DateTime ConvertStringToDateTime(string date)

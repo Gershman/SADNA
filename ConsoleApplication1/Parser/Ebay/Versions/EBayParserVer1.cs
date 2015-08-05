@@ -22,14 +22,22 @@ namespace ConsoleApplication1.Parser.Ebay.Versions
         {
             base.parseEmailImages(userName, emailSubject, orderDate);
             const string SEARCH_IMAGE_URL = "http://thumbs.ebaystatic.com/pict";
-
-            foreach (ItemData item in m_Data.Items)
+            string lastImgUrl = "";
+            int i =0;
+            while (i < m_Data.Items.Count)
+//            foreach (ItemData item in m_Data.Items)
             {
                 int startIndexImageUrl = m_EmailBodyHtml.IndexOf(SEARCH_IMAGE_URL);
                 string startUrlImage = m_EmailBodyHtml.Substring(startIndexImageUrl);
                 int endUrlIndex = startUrlImage.IndexOf('"');
                 string itemUrl = startUrlImage.Substring(0, endUrlIndex);
-                item.ImageURL = itemUrl;
+                if (lastImgUrl.Equals("") || !itemUrl.Equals(lastImgUrl))
+                {
+                    lastImgUrl = itemUrl;
+                    m_Data.Items.ElementAt(i).ImageURL = itemUrl;
+                    i++;
+                }
+                //item.ImageURL = itemUrl;
 
                 m_EmailBodyHtml = m_EmailBodyHtml.Substring(startIndexImageUrl + SEARCH_IMAGE_URL.Length);// remove html for next item
             }

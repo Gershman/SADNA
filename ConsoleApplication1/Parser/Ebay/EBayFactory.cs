@@ -15,7 +15,7 @@ namespace ConsoleApplication1.Parser.Ebay
 
             data.OrderDate = ParserUtils.GetOrderDate(emailBody, WebSite.ebay.ToString());
 
-            if (data.OrderDate.CompareTo(new DateTime(2014, 12, 13)) >= 0)
+            if (data.OrderDate.CompareTo(new DateTime(2014, 11, 29)) >= 0)
             {
                 return new EBayParserVer2(data);
             }

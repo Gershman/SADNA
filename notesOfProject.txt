@@ -1,9 +1,5 @@
-1) לשנות את mailData
-כך שאם יש מייל עם הרבה פריטים
-צריך מחלקת 
-orderData
-שבתוכו itemData.
+הכניסה ל ec2 זה :
+iyarz88@gmail.com
+iopjkl88
 
-2) צריך לבחור איך שומרים את סוג המטבע והמחיר.
-
-3) ebay parser - טיפול ב \n\r ב productname
+instance in frankfurt 
